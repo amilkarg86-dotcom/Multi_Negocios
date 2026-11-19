@@ -129,7 +129,7 @@ Estas tecnologías son una propuesta inicial y podrán ajustarse durante la plan
 
 ## 8. Próximos pasos de diseño
 
-1. Completar la vista de seguimiento del pedido del cliente.
+1. Diseñar la vista de detalle e historial de pedidos del cliente.
 2. Diseñar las vistas de detalle del pedido e historial.
 3. Diseñar el flujo de registro de pedidos por empleado.
 4. Diseñar catálogo y gestión de productos para el administrador.
