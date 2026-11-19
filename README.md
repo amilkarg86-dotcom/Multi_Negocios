@@ -86,6 +86,24 @@ Permite consultar qué ocurre con una compra después de confirmar el pedido. La
 
 Los tiempos estimados, direcciones, importes y datos del repartidor que aparezcan en la maqueta son ilustrativos. El estado y el seguimiento deberán reflejar eventos reales registrados por el sistema; no se mostrará un repartidor como asignado hasta que exista una asignación válida.
 
+### Vista 09. Historial y detalle de pedidos del cliente
+<badge>APROBADA</badge>
+
+Vista aprobada en la secuencia de diseño el 19 de noviembre de 2026. Reúne el historial de compras del cliente y permite abrir el detalle de cada pedido. La experiencia contempla:
+- Listado cronológico de pedidos anteriores, con fecha, negocio, importe y estado.
+- Identificación visual de pedidos en preparación, en camino, entregados o cancelados, según los estados que finalmente soporte el sistema.
+- Acceso al detalle de una compra concreta.
+- Productos, cantidades, precios y total del pedido.
+- Dirección e información de entrega.
+- Método y estado del pago.
+- Cronología de cambios de estado cuando exista historial disponible.
+- Acciones contextuales como repetir pedido, calificar la experiencia o contactar al negocio, sujetas a las reglas funcionales que se definan.
+
+Los estados visibles en el diseño deberán corresponder a estados reales del pedido. La maqueta no confirma por sí sola que estén implementados todos los estados o acciones.
+
+### Vista 10. Perfil y direcciones del cliente
+Siguiente vista de diseño. Permitirá al cliente consultar y actualizar sus datos personales, administrar direcciones de entrega y definir una dirección habitual. La información de perfil será independiente de los datos específicos de cada pedido: cada pedido conservará una copia de la dirección utilizada al momento de la compra para mantener su trazabilidad.
+
 ## 4. Reglas funcionales ya establecidas
 
 - Tanto el cliente como el empleado pueden registrar pedidos.
@@ -95,6 +113,7 @@ Los tiempos estimados, direcciones, importes y datos del repartidor que aparezca
 - Los datos de un negocio deben permanecer aislados de los demás negocios.
 - Los permisos se verifican en el servidor y no solamente ocultando opciones en la aplicación.
 - Los datos y ejemplos que aparezcan en maquetas no deben confundirse con información real.
+- Las direcciones guardadas por el cliente no deben alterar retroactivamente la dirección histórica de pedidos ya registrados.
 
 ## Base de datos de referencia
 
@@ -142,16 +161,16 @@ Estas tecnologías son una propuesta inicial y podrán ajustarse durante la plan
 - Pagos parciales, reembolsos y conciliación de pagos.
 - Proveedores de pago y sus condiciones en Colombia.
 - Flujo de rutas y asignación de repartidores.
+- Campos editables del perfil y reglas para administrar direcciones guardadas.
 
 ## 8. Próximos pasos de diseño
 
-1. Diseñar la vista de detalle e historial de pedidos del cliente.
-2. Diseñar las vistas de detalle del pedido e historial.
-3. Diseñar el flujo de registro de pedidos por empleado.
-4. Diseñar catálogo y gestión de productos para el administrador.
-5. Diseñar inventario, ventas, usuarios y permisos.
-6. Diseñar la experiencia independiente del repartidor.
-7. Consolidar las decisiones funcionales y validar el conjunto de pantallas antes de implementarlas.
+1. Diseñar y aprobar la vista 10: perfil y direcciones del cliente.
+2. Diseñar las vistas de registro de pedidos por empleado.
+3. Diseñar catálogo y gestión de productos para el administrador.
+4. Diseñar inventario, ventas, usuarios y permisos.
+5. Diseñar la experiencia independiente del repartidor.
+6. Consolidar las decisiones funcionales y validar el conjunto de pantallas antes de implementarlas.
 
 ---
 
