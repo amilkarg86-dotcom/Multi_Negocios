@@ -96,6 +96,22 @@ Los tiempos estimados, direcciones, importes y datos del repartidor que aparezca
 - Los permisos se verifican en el servidor y no solamente ocultando opciones en la aplicación.
 - Los datos y ejemplos que aparezcan en maquetas no deben confundirse con información real.
 
+## Base de datos de referencia
+
+El esquema SQL inicial entregado para el proyecto se conserva en [database/001_esquema_inicial.sql](database/001_esquema_inicial.sql). Este archivo es la referencia concreta para el modelo PostgreSQL y prevalece sobre el modelo conceptual preliminar de esta propuesta hasta que se apruebe una nueva migración.
+
+El esquema incluye tipos de negocio configurables, negocios, módulos por negocio, miembros y roles, clientes, productos, pedidos, ítems, historial de estados, pagos, cartera de clientes, archivos y triggers de actualización, auditoría y notificación.
+
+**Reglas y decisiones representadas en el SQL:**
+- Aislamiento relacional mediante negocio_id y claves foráneas compuestas.
+- Valores monetarios como enteros bigint en COP.
+- Cuentas y sesiones delegadas a Better Auth.
+- Configuración por tipo de negocio y módulos activables.
+- Precios de los productos copiados al detalle del pedido para conservar el valor histórico.
+- Registro de pagos y saldo de cartera por cliente.
+
+**Pendientes de revisión antes de producción:** identidad del cliente que crea pedidos, estados adicionales del pedido, estado de confirmación de pagos, autorización de lectura entre negocios, validación del rol del repartidor, integridad del historial y reglas de eliminación/retención de datos. Las claves foráneas compuestas protegen las relaciones entre negocios, pero no sustituyen el control de acceso de las consultas.
+
 ## 5. Principios técnicos y de seguridad
 
 - Arquitectura multiempresa con aislamiento de datos.
