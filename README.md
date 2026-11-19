@@ -87,7 +87,7 @@ Permite consultar qué ocurre con una compra después de confirmar el pedido. La
 Los tiempos estimados, direcciones, importes y datos del repartidor que aparezcan en la maqueta son ilustrativos. El estado y el seguimiento deberán reflejar eventos reales registrados por el sistema; no se mostrará un repartidor como asignado hasta que exista una asignación válida.
 
 ### Vista 09. Historial y detalle de pedidos del cliente
-<badge>APROBADA</badge>
+**Estado: APROBADA**
 
 Vista aprobada en la secuencia de diseño el 19 de noviembre de 2026. Reúne el historial de compras del cliente y permite abrir el detalle de cada pedido. La experiencia contempla:
 - Listado cronológico de pedidos anteriores, con fecha, negocio, importe y estado.
