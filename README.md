@@ -73,7 +73,18 @@ Experiencia de compra dentro de un negocio seleccionado. Incluye:
 Cada pedido pertenece a un único negocio. El pago debe quedar asociado al pedido y su estado debe confirmarse antes de marcarlo como pagado.
 
 ### Vista 08. Seguimiento del pedido del cliente
-Siguiente vista por diseñar. Mostrará el estado del pedido, resumen de compra, información de entrega, eventos de seguimiento y comprobante o estado del pago.
+Permite consultar qué ocurre con una compra después de confirmar el pedido. La pantalla contempla:
+- Identidad del negocio y número del pedido.
+- Estado general de la orden.
+- Línea de progreso: pedido recibido, en preparación, en camino y entregado.
+- Mensaje destacado con el estado actual.
+- Resumen de productos, cantidades, subtotal, envío y total.
+- Dirección e instrucciones de entrega.
+- Información del repartidor asignado, cuando exista asignación.
+- Método y estado del pago, por ejemplo, pago contra entrega pendiente.
+- Acciones para ver el detalle y contactar al negocio.
+
+Los tiempos estimados, direcciones, importes y datos del repartidor que aparezcan en la maqueta son ilustrativos. El estado y el seguimiento deberán reflejar eventos reales registrados por el sistema; no se mostrará un repartidor como asignado hasta que exista una asignación válida.
 
 ## 4. Reglas funcionales ya establecidas
 
