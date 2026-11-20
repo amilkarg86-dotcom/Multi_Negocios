@@ -40,7 +40,28 @@ Una cuenta de cliente no se convierte automáticamente en miembro de un negocio.
 
 No se permite que el destinatario elija o eleve su propio rol. Una invitación no concede acceso a otros negocios.
 
-## 5. Pedidos: flujo unificado
+## 5. Catálogo y promociones del negocio
+
+### 5.1 Administración del catálogo
+Cada negocio administra su propio catálogo de productos. El administrador puede:
+- Crear productos y completar su información comercial.
+- Editar nombre, descripción, imágenes, categoría y demás datos del producto.
+- Establecer y actualizar el precio regular.
+- Publicar, modificar, pausar o retirar productos del catálogo.
+- Crear y administrar promociones para los productos o conjuntos de productos de su negocio.
+- Definir el precio promocional o descuento y la vigencia de la promoción.
+- Consultar cómo se presenta el producto al cliente.
+
+Los empleados solo podrán crear o modificar productos, precios o promociones si el administrador les concede permisos específicos. Sin esos permisos, su acceso al catálogo es de consulta operativa. El repartidor no administra el catálogo. El cliente únicamente consulta productos y promociones publicados y disponibles para la compra.
+
+### 5.2 Publicación y aplicación de precios
+- Cada catálogo pertenece a un único negocio y no se comparte automáticamente con otros negocios.
+- Los productos no publicados, desactivados o fuera de vigencia no se ofrecen para nuevas compras.
+- El servidor valida el precio vigente y la promoción aplicable al confirmar el pedido; no confía en importes enviados por el dispositivo.
+- La promoción debe respetar su vigencia y condiciones configuradas. Los detalles de tipos de descuento, acumulación y límites se formalizarán antes de implementar.
+- El pedido conserva una instantánea del nombre del producto, precio aplicado, descuento y promoción utilizada, cuando corresponda. Cambios posteriores del catálogo no modifican pedidos anteriores.
+
+## 6. Pedidos: flujo unificado
 Los pedidos pueden originarse por dos vías:
 - **Cliente:** el cliente autenticado crea su pedido desde su experiencia.
 - **Empleado:** un empleado autorizado registra el pedido en nombre de un cliente, por atención presencial, llamada o mensajería.
@@ -59,7 +80,7 @@ Ambas vías utilizan el mismo proceso de validación, cálculo, persistencia, pa
 
 El cliente no puede alterar un pedido después de confirmado salvo mediante las acciones que el negocio habilite. El empleado solo puede modificarlo según sus permisos y las reglas de estado. El repartidor no modifica el contenido comercial.
 
-## 6. Asignación y entrega
+## 7. Asignación y entrega
 - Solo el administrador o un empleado con permiso expreso puede asignar o cambiar al repartidor.
 - El repartidor solo ve asignaciones vigentes o su historial propio.
 - Las acciones de recogida, salida a ruta, entrega o incidencia se validan contra la asignación activa y el estado actual.
@@ -67,19 +88,19 @@ El cliente no puede alterar un pedido después de confirmado salvo mediante las 
 - La información personal del cliente se limita a lo necesario para realizar la entrega.
 - La asignación no debe permitir que un repartidor consulte pedidos de otros repartidores.
 
-## 7. Estados y pagos
+## 8. Estados y pagos
 Los estados definitivos y sus transiciones se deben formalizar antes de implementar. La interfaz puede representar recepción, preparación, ruta, entrega y cancelación, pero la API solo acepta transiciones válidas. El estado de pago es independiente del estado logístico del pedido. Un pedido entregado no implica automáticamente que esté pagado, y un pago confirmado no implica que esté entregado.
 
-## 8. Clientes, direcciones e historial
+## 9. Clientes, direcciones e historial
 Los datos de clientes pertenecen al negocio para la relación comercial, mientras que la cuenta autenticada y sus direcciones personales requieren un vínculo explícito y controles de privacidad. Cada pedido conserva una instantánea de la dirección utilizada; editar una dirección guardada no cambia pedidos anteriores.
 
-## 9. Notificaciones
+## 10. Notificaciones
 Las notificaciones se entregan al destinatario correcto según su relación con el negocio y el evento. El cliente recibe novedades de sus pedidos, pagos y comunicaciones permitidas. El repartidor recibe cambios de sus asignaciones. El empleado y administrador reciben avisos operativos acordes a sus permisos. Ninguna notificación debe revelar información de otro negocio o usuario.
 
-## 10. Auditoría y revocación
+## 11. Auditoría y revocación
 Se registran creación y cambios de pedidos, pagos, asignaciones, invitaciones, cambios de permisos y acciones administrativas relevantes. Al desactivar una membresía o revocar una autorización, las solicitudes posteriores deben rechazarse inmediatamente. La auditoría se conserva de acuerdo con la política de retención.
 
-## 11. Reglas de seguridad transversales
+## 12. Reglas de seguridad transversales
 - Verificar negocio y permiso en cada lectura y escritura.
 - No confiar en identificadores de negocio, rol, cliente, miembro o repartidor enviados por la aplicación.
 - Aplicar límites de acceso por recurso y por estado.
@@ -87,11 +108,12 @@ Se registran creación y cambios de pedidos, pagos, asignaciones, invitaciones, 
 - Evitar exponer datos personales innecesarios.
 - Probar intentos de acceso cruzado entre negocios, clientes, empleados y repartidores.
 
-## 12. Pendientes antes de producción
+## 13. Pendientes antes de producción
 - Matriz detallada de permisos para cada acción de empleado.
 - Si una cuenta podrá tener varias membresías y cómo cambiar de contexto.
 - Estados exactos del pedido y transiciones por perfil.
 - Reglas de cancelación, devolución y edición.
 - Reglas de inventario y pagos parciales.
+- Tipos de promociones, reglas de acumulación, límites, vigencia y compatibilidad entre promociones.
 - Política de retención, eliminación y exportación de datos.
 - Verificación de invitaciones y canales de entrega.
