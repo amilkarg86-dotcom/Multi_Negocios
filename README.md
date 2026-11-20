@@ -1,177 +1,119 @@
 # Multi_Negocios
 
-Plataforma de gestión comercial y logística para negocios independientes.
+Plataforma móvil de gestión comercial y logística para negocios independientes.
 
-> **Propuesta en construcción.** Este README es el documento vivo de presentación del producto. Aquí se consolidan el propósito, las experiencias por tipo de usuario, los conceptos visuales y las decisiones funcionales que se vayan aprobando. Las imágenes generadas durante el diseño sirven como referencias visuales; todavía no representan pantallas implementadas.
+> **Propuesta en construcción.** Este README consolida la visión, las experiencias por perfil, las reglas funcionales y las decisiones aprobadas. Las maquetas son referencias visuales; no representan funciones implementadas.
 
 ## Objetivo
-
-Facilitar la administración de pedidos, clientes, productos, inventario, ventas, pagos, rutas y repartidores mediante una plataforma móvil para Android y iOS.
+Facilitar la administración de pedidos, clientes, productos, inventario, ventas, pagos, rutas y repartidores mediante una plataforma para Android y iOS, con aislamiento estricto entre negocios.
 
 ## Estado
-
-Proyecto en fase de definición y diseño. Se está construyendo la propuesta funcional y visual antes de implementar las interfaces.
-
----
+Fase de definición funcional, diseño y preparación técnica.
 
 ## 1. Identidad visual
+- Estilo digital y contemporáneo.
+- Fondos azul profundo, acentos cian y violeta, tarjetas redondeadas e iconografía clara.
+- Identidad común con navegación y funciones adaptadas a cada perfil.
+- Diseño progresivo: una vista a la vez, aprobación antes de consolidarla.
 
-- **Estilo:** digital y contemporáneo.
-- **Lenguaje visual:** interfaz oscura, fondos azul profundo, acentos cian y violeta, tarjetas redondeadas, indicadores luminosos e iconografía clara.
-- **Criterio de experiencia:** conservar una identidad común, pero adaptar navegación, información y acciones al tipo de usuario.
-- **Diseño progresivo:** cada vista se define de manera independiente, con un concepto visual propio, antes de pasar a desarrollo.
-
-## 2. Tipos de usuario y experiencias
-
-### Administrador del negocio
-Cuenta con una vista de control general para supervisar la actividad comercial, los pedidos, las ventas, los clientes, los productos, el inventario, los empleados y la configuración del negocio.
+## 2. Perfiles y límites
+### Administrador
+Controla la operación de su negocio: pedidos, clientes, productos, inventario, pagos, reportes, equipo, invitaciones, asignaciones y configuración. No accede a otros negocios.
 
 ### Empleado
-Cuenta con herramientas para la operación diaria: registrar pedidos en nombre de clientes, consultar clientes y productos, revisar pedidos pendientes, actualizar estados según sus permisos y consultar información operativa.
-
-### Cliente
-Puede encontrar y seleccionar un negocio, explorar su catálogo, añadir productos al carrito, registrar pedidos, seleccionar un método de pago y consultar el seguimiento de sus compras.
+Registra pedidos para clientes y ejecuta operaciones habilitadas por permisos. No administra miembros, roles, invitaciones ni configuración general salvo autorización específica. Todo pedido asistido identifica al empleado creador y al cliente correspondiente.
 
 ### Repartidor
-Tendrá una experiencia específica para consultar entregas asignadas, revisar direcciones e instrucciones, actualizar estados de entrega y consultar su recorrido. Su vista se diseñará en una etapa posterior.
+Se vincula mediante invitación aceptada y validada. Solo consulta entregas asignadas y actualiza eventos logísticos permitidos. No registra pedidos, se autoasigna entregas, modifica importes ni consulta operaciones ajenas.
 
-Los permisos definitivos de cada perfil deberán validarse en el backend. La interfaz no sustituye la autorización del servidor.
+### Cliente
+Descubre negocios, consulta catálogos, registra pedidos propios, paga y consulta sus datos, direcciones, notificaciones e historial. No accede a información interna ni a pedidos de otros clientes.
 
-## 3. Catálogo de vistas y conceptos visuales
+Los permisos se verifican en el servidor. La matriz y lógica completa están en [docs/logica-del-sistema.md](docs/logica-del-sistema.md).
 
-Las siguientes vistas forman parte de la propuesta de interfaz. Las cifras, negocios, nombres, productos y operaciones que aparezcan en las maquetas son ilustrativos.
+## 3. Esquema de navegación
+La estructura funcional por perfil está en [docs/esquema-app.md](docs/esquema-app.md). Las experiencias son independientes:
+- Cliente: Inicio, Mis pedidos, Mi perfil y Notificaciones.
+- Administrador: Resumen, Pedidos, Clientes, Productos, Inventario, Ventas/Pagos, Equipo y Configuración.
+- Empleado: Inicio operativo, Registrar pedido, Pedidos, Clientes, Productos, Pagos autorizados, Notificaciones y Perfil.
+- Repartidor: Inicio, Mis entregas, Detalle de entrega, Ruta, Incidencias, Historial y Perfil.
+
+## 4. Catálogo inicial de vistas
+Las cifras, negocios, personas, productos y operaciones de las maquetas son ilustrativos.
 
 ### Vista 01. Inicio de sesión
-Pantalla de acceso a Multi_Negocios. Presenta la identidad de la plataforma y los campos de autenticación. Debe ofrecer una entrada clara y segura para usuarios registrados.
+Acceso común con autenticación segura y posterior resolución del contexto y perfil autorizado.
 
 ### Vista 02. Registro de cuenta
-Formulario para crear una cuenta con datos personales y credenciales. El rol no se asigna libremente: los clientes pueden crear su cuenta, mientras que empleados y repartidores deben incorporarse mediante autorización o invitación del negocio. La creación de un negocio tendrá un flujo propio.
+Registro público de cuenta cliente. Empleados y repartidores se incorporan mediante invitación aceptada. El alta de un negocio tiene un flujo separado.
 
 ### Vista 03. Selección de negocio
-Permite buscar negocios por nombre, explorar categorías y seleccionar un negocio. También contempla el acceso mediante invitación y la posibilidad de iniciar el registro de un nuevo negocio. La disponibilidad de cada opción depende del perfil y de los permisos del usuario.
+Descubrimiento y selección de negocios disponibles, o acceso a una invitación. La pertenencia y los permisos se verifican en el servidor.
 
 ### Vista 04. Panel principal del administrador
-Centro de operaciones del negocio. Incluye indicadores de pedidos, ventas, clientes y productos; resumen de ventas por periodo; pedidos recientes; notificaciones y accesos rápidos a productos, inventario, ventas y usuarios.
+Resumen de la actividad del negocio, indicadores, pedidos recientes y accesos a módulos autorizados.
 
 ### Vista 05. Panel principal del empleado
-Panel operativo con accesos para registrar pedidos, consultar clientes, revisar productos y ventas, gestionar pedidos pendientes y atender notificaciones. Las acciones disponibles dependen de los permisos asignados por el administrador.
+Panel operativo con accesos a registro de pedidos y tareas habilitadas por permisos.
 
 ### Vista 06. Panel principal del cliente
-Experiencia orientada a compras. Facilita el acceso a negocios, catálogo, carrito, pedidos e historial, además de la administración de datos personales y direcciones.
+Experiencia de compra para descubrir negocios, consultar catálogo, carrito, pedidos e historial.
 
 ### Vista 07. Catálogo, carrito y pasarela de pagos
-Experiencia de compra dentro de un negocio seleccionado. Incluye:
-- Identidad del negocio: nombre, logotipo, descripción, calificación y horario.
-- Búsqueda y categorías de productos.
-- Fotografías, precios, disponibilidad y selección de cantidades.
-- Carrito con modificación y eliminación de artículos.
-- Resumen de subtotal, envío y total antes de confirmar.
-- Selección de método de pago.
-
-**Métodos de pago considerados para evaluar:** tarjeta débito/crédito, billeteras digitales, transferencia bancaria y pago contra entrega. La integración con proveedores como Mercado Pago o Wompi es una posibilidad por investigar, no una integración confirmada. Los pagos electrónicos deberán procesarse mediante un proveedor seguro; la plataforma no almacenará números completos de tarjeta ni códigos de seguridad.
-
-Cada pedido pertenece a un único negocio. El pago debe quedar asociado al pedido y su estado debe confirmarse antes de marcarlo como pagado.
+Identidad del negocio, búsqueda y categorías, productos, cantidades, carrito, resumen y selección de método de pago. Cada pedido pertenece a un solo negocio. Los pagos electrónicos se procesarán mediante proveedor seguro; no se almacenarán datos completos de tarjetas.
 
 ### Vista 08. Seguimiento del pedido del cliente
-Permite consultar qué ocurre con una compra después de confirmar el pedido. La pantalla contempla:
-- Identidad del negocio y número del pedido.
-- Estado general de la orden.
-- Línea de progreso: pedido recibido, en preparación, en camino y entregado.
-- Mensaje destacado con el estado actual.
-- Resumen de productos, cantidades, subtotal, envío y total.
-- Dirección e instrucciones de entrega.
-- Información del repartidor asignado, cuando exista asignación.
-- Método y estado del pago, por ejemplo, pago contra entrega pendiente.
-- Acciones para ver el detalle y contactar al negocio.
-
-Los tiempos estimados, direcciones, importes y datos del repartidor que aparezcan en la maqueta son ilustrativos. El estado y el seguimiento deberán reflejar eventos reales registrados por el sistema; no se mostrará un repartidor como asignado hasta que exista una asignación válida.
+Estado, progreso, resumen, dirección histórica, pago y datos mínimos de entrega. Solo se muestra repartidor cuando exista asignación válida.
 
 ### Vista 09. Historial y detalle de pedidos del cliente
-**Estado: APROBADA**
-
-Vista aprobada en la secuencia de diseño el 19 de noviembre de 2026. Reúne el historial de compras del cliente y permite abrir el detalle de cada pedido. La experiencia contempla:
-- Listado cronológico de pedidos anteriores, con fecha, negocio, importe y estado.
-- Identificación visual de pedidos en preparación, en camino, entregados o cancelados, según los estados que finalmente soporte el sistema.
-- Acceso al detalle de una compra concreta.
-- Productos, cantidades, precios y total del pedido.
-- Dirección e información de entrega.
-- Método y estado del pago.
-- Cronología de cambios de estado cuando exista historial disponible.
-- Acciones contextuales como repetir pedido, calificar la experiencia o contactar al negocio, sujetas a las reglas funcionales que se definan.
-
-Los estados visibles en el diseño deberán corresponder a estados reales del pedido. La maqueta no confirma por sí sola que estén implementados todos los estados o acciones.
+**Estado: APROBADA.** Listado cronológico, importe, estado, detalle de productos, dirección, pago, historial y acciones contextuales permitidas.
 
 ### Vista 10. Perfil y direcciones del cliente
-Siguiente vista de diseño. Permitirá al cliente consultar y actualizar sus datos personales, administrar direcciones de entrega y definir una dirección habitual. La información de perfil será independiente de los datos específicos de cada pedido: cada pedido conservará una copia de la dirección utilizada al momento de la compra para mantener su trazabilidad.
+**Estado: APROBADA.** Perfil, direcciones guardadas, dirección principal, edición y eliminación. Las direcciones de pedidos anteriores permanecen como instantáneas históricas.
 
-## 4. Reglas funcionales ya establecidas
+### Vista 11. Centro de notificaciones
+**Estado: APROBADA.** Bandeja de notificaciones, filtros por pedidos, pagos y promociones, lectura y detalle de avisos. Cada aviso se limita al destinatario autorizado.
 
-- Tanto el cliente como el empleado pueden registrar pedidos.
-- Cuando un empleado registra un pedido en nombre de un cliente, debe quedar guardado quién lo registró y que su origen fue el flujo de empleado.
-- Los pedidos creados por clientes y empleados convergen en el mismo sistema de gestión y reglas de negocio.
-- Cada pedido debe estar asociado a un negocio.
-- Los datos de un negocio deben permanecer aislados de los demás negocios.
-- Los permisos se verifican en el servidor y no solamente ocultando opciones en la aplicación.
-- Los datos y ejemplos que aparezcan en maquetas no deben confundirse con información real.
-- Las direcciones guardadas por el cliente no deben alterar retroactivamente la dirección histórica de pedidos ya registrados.
+### Vista 12. Configuración de la cuenta
+**Estado: APROBADA.** Preferencias, notificaciones, privacidad, seguridad, sesiones y opciones de gestión de datos y cuenta.
 
-## Base de datos de referencia
+La aprobación visual no significa que las pantallas o funciones estén implementadas. Las vistas 01 a 08 conservan el estado de aprobación que conste en el registro de diseño; no se infiere aprobación por su inclusión en este catálogo.
 
-El esquema SQL inicial entregado para el proyecto se conserva en [database/001_esquema_inicial.sql](database/001_esquema_inicial.sql). Este archivo es la referencia concreta para el modelo PostgreSQL y prevalece sobre el modelo conceptual preliminar de esta propuesta hasta que se apruebe una nueva migración.
+## 5. Lógica funcional
+- Cliente y empleado pueden registrar pedidos mediante un flujo unificado.
+- El pedido conserva cliente, origen y usuario creador; en el flujo asistido conserva también la membresía del empleado.
+- El repartidor accede únicamente a entregas asignadas.
+- Solo administrador o miembro expresamente autorizado puede invitar y asignar.
+- Aceptar invitación no equivale a asignación de pedidos.
+- El cliente solo consulta sus propios pedidos y datos.
+- Cada negocio mantiene sus datos aislados.
+- Direcciones guardadas no modifican direcciones históricas de pedidos.
+- Pagos y estados logísticos son independientes.
+- Las acciones sensibles deben ser auditables.
 
-El esquema incluye tipos de negocio configurables, negocios, módulos por negocio, miembros y roles, clientes, productos, pedidos, ítems, historial de estados, pagos, cartera de clientes, archivos y triggers de actualización, auditoría y notificación.
+## 6. Documentación del proyecto
+- [Plan general](PLANO.md)
+- [Lógica funcional del sistema](docs/logica-del-sistema.md)
+- [Esquema de navegación de la app](docs/esquema-app.md)
+- [Arquitectura](docs/arquitectura.md)
+- [Base de datos](docs/base-de-datos.md)
+- [Hoja de ruta](docs/roadmap.md)
+- [Esquema SQL inicial](database/001_esquema_inicial.sql)
 
-**Reglas y decisiones representadas en el SQL:**
-- Aislamiento relacional mediante negocio_id y claves foráneas compuestas.
-- Valores monetarios como enteros bigint en COP.
-- Cuentas y sesiones delegadas a Better Auth.
-- Configuración por tipo de negocio y módulos activables.
-- Precios de los productos copiados al detalle del pedido para conservar el valor histórico.
-- Registro de pagos y saldo de cartera por cliente.
+## 7. Tecnologías propuestas
+- React Native, Expo y TypeScript.
+- Node.js y TypeScript.
+- PostgreSQL.
+- Monolito modular inicial.
 
-**Pendientes de revisión antes de producción:** identidad del cliente que crea pedidos, estados adicionales del pedido, estado de confirmación de pagos, autorización de lectura entre negocios, validación del rol del repartidor, integridad del historial y reglas de eliminación/retención de datos. Las claves foráneas compuestas protegen las relaciones entre negocios, pero no sustituyen el control de acceso de las consultas.
-
-## 5. Principios técnicos y de seguridad
-
-- Arquitectura multiempresa con aislamiento de datos.
-- Trazabilidad de las acciones relevantes.
-- Validación de entradas y autorización en el backend.
-- Protección de credenciales y secretos mediante variables de entorno.
-- Operaciones críticas y cambios de estado consistentes.
-- Copias de seguridad y pruebas de restauración antes de producción.
-- Cumplimiento de las obligaciones aplicables de protección de datos personales.
-
-## 6. Tecnologías propuestas
-
-- Aplicación móvil: React Native, Expo y TypeScript.
-- Backend: Node.js y TypeScript.
-- Base de datos: PostgreSQL.
-- Arquitectura inicial: monolito modular.
-
-Estas tecnologías son una propuesta inicial y podrán ajustarse durante la planificación técnica.
-
-## 7. Decisiones pendientes
-
-- Mecanismo para descubrir negocios: búsqueda, ubicación, enlace/código compartido o combinación.
-- Si una misma cuenta podrá pertenecer a varios negocios.
-- Roles definitivos y matriz de permisos.
-- Estados del pedido y transiciones permitidas.
-- Reglas de inventario al crear, cancelar y entregar pedidos.
-- Costos de envío y reglas de cobertura.
-- Pagos parciales, reembolsos y conciliación de pagos.
-- Proveedores de pago y sus condiciones en Colombia.
-- Flujo de rutas y asignación de repartidores.
-- Campos editables del perfil y reglas para administrar direcciones guardadas.
-
-## 8. Próximos pasos de diseño
-
-1. Diseñar y aprobar la vista 10: perfil y direcciones del cliente.
-2. Diseñar las vistas de registro de pedidos por empleado.
-3. Diseñar catálogo y gestión de productos para el administrador.
-4. Diseñar inventario, ventas, usuarios y permisos.
-5. Diseñar la experiencia independiente del repartidor.
-6. Consolidar las decisiones funcionales y validar el conjunto de pantallas antes de implementarlas.
+## 8. Pendientes antes de producción
+- Matriz detallada de permisos del empleado.
+- Membresías múltiples y cambio de contexto.
+- Estados y transiciones definitivas de pedidos.
+- Reglas de inventario, cancelación y devolución.
+- Pagos parciales, reembolsos y conciliación.
+- Política de retención y eliminación.
+- Estrategia de aislamiento y pruebas RLS.
 
 ---
-
-**Nota:** Este documento evoluciona con el proyecto. Las nuevas vistas y decisiones aprobadas deben incorporarse aquí para mantener una propuesta única y coherente.
+Este documento evoluciona con el proyecto. Las decisiones nuevas deben registrarse y respetar las aprobaciones previas.
