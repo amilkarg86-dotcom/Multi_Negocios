@@ -24,20 +24,23 @@ Flujos:
 - Mis pedidos → detalle → seguimiento o historial.
 - Mi perfil → direcciones, preferencias, configuración, seguridad y privacidad.
 
-Restricciones: solo consulta y modifica su propia cuenta, direcciones, preferencias y pedidos mediante acciones habilitadas. No ve herramientas internas del negocio.
+Restricciones: solo consulta y modifica su propia cuenta, direcciones, preferencias y pedidos mediante acciones habilitadas. En el catálogo del negocio únicamente consulta productos y promociones publicados y disponibles; no ve herramientas internas de administración.
 
 ## 3. Experiencia del administrador
 Navegación y módulos:
 - **Resumen:** indicadores y actividad del negocio.
 - **Pedidos:** listado, detalle, registro, cambios permitidos y asignación de reparto.
 - **Clientes:** listado y ficha comercial.
-- **Productos:** catálogo, precios, disponibilidad y edición.
+- **Catálogo del negocio:** crear, editar, publicar, pausar y retirar productos; administrar categorías, imágenes, precios regulares y promociones.
 - **Inventario:** existencias y movimientos, cuando el módulo esté activo.
 - **Ventas y pagos:** operaciones, cartera y reportes del negocio.
 - **Equipo:** empleados, repartidores, invitaciones, membresías y permisos.
 - **Configuración:** datos del negocio, módulos y preferencias.
 
-El administrador solo opera dentro de su negocio. Las acciones sensibles requieren confirmación y registro de auditoría.
+El administrador solo opera dentro de su negocio. Es responsable de mantener su catálogo, precios y promociones. Las acciones sensibles requieren confirmación y registro de auditoría.
+
+### Gestión del catálogo y promociones
+Flujo administrativo: Catálogo → crear producto → completar información e imagen → establecer precio regular → guardar como borrador o publicar → crear promoción opcional → establecer descuento o precio promocional y vigencia → revisar publicación. El administrador puede editar, pausar o retirar productos y promociones. Las condiciones exactas de descuentos, acumulación y límites se definirán antes de programar.
 
 ## 4. Experiencia del empleado
 Navegación y módulos sujetos a permisos:
@@ -50,7 +53,7 @@ Navegación y módulos sujetos a permisos:
 - **Notificaciones:** avisos operativos permitidos.
 - **Perfil:** datos propios y cierre de sesión.
 
-El empleado no administra miembros, invitaciones, roles ni configuración general. La pantalla no mostrará acciones para las que no tenga permiso.
+El empleado no administra miembros, invitaciones, roles ni configuración general. Puede consultar el catálogo para atender pedidos; crear o editar productos, precios y promociones requiere un permiso específico concedido por el administrador. La pantalla no mostrará acciones para las que no tenga permiso.
 
 ## 5. Experiencia del repartidor
 Navegación y módulos:
@@ -62,7 +65,7 @@ Navegación y módulos:
 - **Historial:** entregas realizadas por el propio repartidor.
 - **Perfil:** información propia y cierre de sesión.
 
-El repartidor no registra pedidos, no asigna entregas, no edita importes ni consulta pedidos ajenos a sus asignaciones.
+El repartidor no registra pedidos, no asigna entregas, no administra el catálogo, no modifica productos, precios o promociones, no edita importes ni consulta pedidos ajenos a sus asignaciones.
 
 ## 6. Catálogo inicial de vistas del cliente
 1. Inicio de sesión.
