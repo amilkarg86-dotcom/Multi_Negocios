@@ -51,6 +51,15 @@ El esquema debe diferenciar:
 
 El flujo de cliente no debe obligar a crear una membresía. Los artículos conservan precio y descripción aplicados al momento de la venta. El total se calcula y valida en servidor dentro de una transacción.
 
+### Catálogo, precios y promociones
+- Los productos pertenecen a un negocio y su identificador no concede acceso entre negocios.
+- Se requiere información de publicación/visibilidad y estado del producto, además de precio regular vigente.
+- Las promociones deben pertenecer al mismo negocio y poder asociarse a uno o varios productos según las reglas finales.
+- Una promoción debe almacenar tipo de beneficio, valor o precio promocional, vigencia, estado y condiciones aplicables. Los tipos, acumulación, límites y compatibilidad deben definirse antes de crear la migración.
+- El backend debe validar que la promoción esté activa, dentro de vigencia y sea aplicable al producto y pedido.
+- Los ítems del pedido deben conservar instantáneas de nombre, precio regular, precio aplicado, descuento y referencia descriptiva de promoción cuando aplique. Los cambios posteriores no recalculan ventas históricas.
+- La gestión del catálogo corresponde al administrador. Los permisos de empleado pueden habilitar operaciones específicas; el repartidor no tiene permisos de catálogo y el cliente solo consulta la oferta publicada.
+
 ### Direcciones
 Las direcciones guardadas por el cliente deben modelarse separadamente de la dirección histórica copiada al pedido. Editar o eliminar una dirección guardada no altera pedidos previos.
 
@@ -79,15 +88,16 @@ Las acciones sensibles deben identificar actor autenticado, negocio, acción, en
 1. El enum de miembros usa dueno/caja/repartidor; debe alinearse conceptualmente con administrador/empleado/repartidor sin romper datos existentes.
 2. pedidos.creado_por solo referencia miembros y no representa correctamente pedidos creados directamente por clientes.
 3. No hay invitaciones ni permisos específicos por empleado.
-4. No hay vínculo formal entre cuenta de cliente y ficha comercial.
-5. No hay entidad de direcciones guardadas del cliente.
-6. pedidos.repartidor_id no conserva historial de asignaciones y no valida por sí solo el rol repartidor.
-7. pedido_historial no identifica de forma completa actores cliente, miembro y sistema.
-8. pagos no tiene estado de confirmación.
-9. No hay tabla de notificaciones.
-10. cartera_clientes debe agrupar y unir explícitamente por negocio_id; también debe definir pagos pendientes, reembolsos y abonos.
-11. Debe revisarse eliminación en cascada para preservar historial comercial y financiero.
-12. Debe garantizarse que el total del pedido coincide con la suma de sus ítems.
+4. El catálogo inicial no contempla todavía un modelo completo de publicación, precios promocionales y promociones con vigencia y condiciones.
+5. No hay vínculo formal entre cuenta de cliente y ficha comercial.
+6. No hay entidad de direcciones guardadas del cliente.
+7. pedidos.repartidor_id no conserva historial de asignaciones y no valida por sí solo el rol repartidor.
+8. pedido_historial no identifica de forma completa actores cliente, miembro y sistema.
+9. pagos no tiene estado de confirmación.
+10. No hay tabla de notificaciones.
+11. cartera_clientes debe agrupar y unir explícitamente por negocio_id; también debe definir pagos pendientes, reembolsos y abonos.
+12. Debe revisarse eliminación en cascada para preservar historial comercial y financiero.
+13. Debe garantizarse que el total del pedido coincide con la suma de sus ítems.
 
 ## Política de migraciones
 Estos puntos son requisitos de diseño, no cambios ya aplicados. Antes de escribir la siguiente migración SQL se debe revisar el esquema efectivo, las dependencias de Better Auth y las reglas finales. Cada migración debe probarse en una base desechable y contar con pruebas de aislamiento multiempresa, autorización por perfil e integridad transaccional.
