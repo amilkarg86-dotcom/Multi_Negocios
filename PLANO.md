@@ -1,59 +1,73 @@
-# Plan inicial de Multi_Negocios
+# Plan de Multi_Negocios
 
 ## 1. Visión
-Multi_Negocios será una plataforma de gestión comercial y logística para negocios independientes. Permitirá administrar clientes, catálogo, pedidos, entregas, pagos, inventario y reportes desde una aplicación móvil para Android y iOS.
+Multi_Negocios será una plataforma de gestión comercial y logística para negocios independientes, disponible para Android y iOS. Permitirá administrar clientes, catálogo, pedidos, entregas, pagos, inventario y reportes, con espacios de trabajo separados por negocio.
 
 ## 2. Principios
-- Multiempresa: cada negocio administra su propia operación.
-- Aislamiento: los datos de un negocio no deben ser visibles para otro.
-- Trazabilidad: registrar quién ejecutó cada acción relevante.
-- Accesos por rol y permiso.
-- Experiencia sencilla para clientes, empleados y repartidores.
+- Multiempresa con aislamiento estricto de datos.
+- Cuatro experiencias independientes: administrador, empleado, repartidor y cliente.
+- Acceso por rol y permisos específicos.
+- Empleados y repartidores se vinculan al negocio mediante invitación autorizada.
+- Los pedidos de clientes y los registrados por empleados convergen en un único flujo.
+- Trazabilidad de acciones y operaciones.
 - Desarrollo gradual, priorizando un MVP funcional y de bajo costo.
 
-## 3. Registro de pedidos
-Un pedido podrá registrarse por dos vías:
+## 3. Perfiles y límites
+
+### Administrador
+Administra la operación completa de su negocio: pedidos, clientes, catálogo, inventario, pagos, reportes, miembros, invitaciones, asignaciones y configuración. No accede a datos de otros negocios.
+
+### Empleado
+Registra pedidos en nombre de clientes y realiza tareas operativas habilitadas por permisos. No administra miembros, roles, invitaciones ni configuración general, salvo facultades específicas expresamente autorizadas. Cada pedido asistido conserva al empleado como creador y al cliente como destinatario.
+
+### Repartidor
+Se incorpora mediante invitación aceptada y validada. Solo consulta entregas asignadas y actualiza los eventos logísticos permitidos. No registra pedidos, se autoasigna entregas, modifica productos o importes ni consulta ventas, cartera, inventario o pedidos ajenos.
+
+### Cliente
+Descubre negocios, consulta catálogos, registra sus propios pedidos, realiza pagos disponibles y consulta sus direcciones, notificaciones e historial. Solo accede a sus propios datos y pedidos. No accede a funciones internas del negocio.
+
+## 4. Registro de pedidos
+Un pedido puede registrarse por dos vías:
 1. **Cliente:** crea su propio pedido desde la aplicación.
-2. **Empleado:** registra un pedido en nombre del cliente, por llamada, mensajería o atención presencial.
+2. **Empleado:** registra el pedido en nombre del cliente por atención presencial, llamada o mensajería.
 
-Ambas vías utilizarán el mismo proceso de validación y gestión. Cada pedido conservará el origen del registro y el usuario que lo creó.
+Ambas vías utilizan las mismas validaciones y reglas comerciales. Se conservan negocio, cliente, origen, usuario creador, miembro empleado cuando aplique, artículos, cantidades, precios históricos, total, dirección histórica, estado, pagos e historial.
 
-Datos iniciales: negocio, cliente, usuario creador, origen (cliente o empleado), productos, cantidades, precios, dirección, instrucciones de entrega, estado, asignación de repartidor o ruta y pagos.
+## 5. Invitaciones y asignaciones
+- El administrador o una persona expresamente autorizada invita empleados y repartidores.
+- La invitación indica negocio, rol, permisos iniciales, vencimiento y emisor.
+- El usuario debe autenticarse y aceptar; el servidor valida y crea la membresía.
+- El usuario no puede elegirse ni elevarse el rol.
+- Aceptar una invitación de repartidor no da acceso a pedidos automáticamente.
+- Solo el administrador o empleado autorizado asigna pedidos.
+- El repartidor consulta y actualiza exclusivamente sus asignaciones vigentes.
 
-## 4. Módulos previstos
-- Identidad, usuarios, negocios y permisos.
-- Perfil del negocio y catálogo de productos.
-- Clientes y pedidos.
-- Estados y seguimiento.
-- Rutas y repartidores.
-- Registro de pagos.
-- Inventario y movimientos.
-- Historial de ventas y reportes.
-- Notificaciones.
+## 6. Módulos previstos
+Identidad y sesiones; negocios y membresías; roles y permisos; perfil del negocio; catálogo; clientes; pedidos; seguimiento; invitaciones; asignaciones y rutas; pagos; inventario; reportes; notificaciones; privacidad y auditoría.
 
-La prioridad definitiva se validará durante el desarrollo.
+Los módulos pueden activarse según el tipo de negocio y su configuración. Su activación no concede permisos por sí sola.
 
-## 5. Tecnologías propuestas
+## 7. Tecnologías propuestas
 - Aplicación móvil: React Native, Expo y TypeScript.
 - Backend: Node.js y TypeScript.
 - Base de datos: PostgreSQL.
 - Arquitectura inicial: monolito modular.
-- Almacenamiento de archivos: servicio compatible con S3 cuando sea necesario.
+- Almacenamiento de archivos compatible con S3 cuando sea necesario.
 
 Son propuestas iniciales, no decisiones irreversibles.
 
-## 6. Fuera del alcance inicial
+## 8. Fuera del alcance inicial
 No se incorporarán automáticamente microservicios, inteligencia artificial, optimización avanzada de rutas ni múltiples proveedores de pago en la primera versión. Se evaluarán cuando exista una necesidad demostrable.
 
-## 7. Decisiones pendientes
-- Cómo encuentra un cliente un negocio: búsqueda, ubicación, enlace/código compartido o combinación.
-- Si una cuenta podrá pertenecer a varios negocios.
-- Roles exactos y matriz de permisos.
-- Reglas de inventario al crear, cancelar o entregar pedidos.
-- Estados definitivos y transiciones permitidas.
-- Métodos de pago y pagos parciales.
-- Reglas de asignación de rutas y repartidores.
-- Requisitos de publicación, costos y proveedores.
+## 9. Decisiones pendientes
+- Descubrimiento de negocios: búsqueda, ubicación, enlace/código o combinación.
+- Membresías múltiples y cambio de contexto.
+- Matriz detallada de permisos de empleados.
+- Estados y transiciones definitivas de pedidos.
+- Reglas de inventario, cancelaciones y devoluciones.
+- Pagos parciales, reembolsos y conciliación.
+- Asignación de rutas y evidencias de entrega.
+- Política de retención y eliminación de datos.
 
-## 8. Criterio de aceptación
-Una función estará lista cuando tenga validaciones, control de permisos en el servidor, pruebas relevantes, manejo de errores y documentación mínima.
+## 10. Criterio de aceptación
+Una función estará lista cuando tenga validaciones, control de permisos en servidor, pruebas relevantes, manejo de errores y documentación mínima.
