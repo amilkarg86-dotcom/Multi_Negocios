@@ -23,7 +23,7 @@ El esquema inicial se conserva en [database/001_esquema_inicial.sql](../database
 | Archivos | archivos |
 | Automatización | funciones y triggers de actualización, historial y notificación |
 
-## Modelo lógico requerido por la lógica aprobada
+## Diagrama entidad-relación\nEl diagrama visual de las tablas, campos y relaciones declaradas en el SQL inicial está en [docs/modelo-entidad-relacion.md](./modelo-entidad-relacion.md). Ese documento separa el esquema actual de las entidades que todavía están pendientes de diseño e implementación.\n\n## Modelo lógico requerido por la lógica aprobada
 
 ### Identidad y membresías
 - Una cuenta autenticada representa a una persona.
