@@ -23,6 +23,32 @@ Esta decisión establece que:
 
 La arquitectura propuesta para materializar esta decisión es un **monolito modular inicial**, no una colección prematura de microservicios.
 
+## 2.1 Módulos aprobados para la planificación del MVP
+
+La siguiente clasificación queda **aprobada como punto de partida documental**. No sustituye la definición detallada de reglas, dependencias y alcance de cada módulo.
+
+**Módulos esenciales propuestos para el primer lanzamiento:**
+- Identidad y autenticación.
+- Registro y administración de negocios.
+- Usuarios, roles, permisos e invitaciones.
+- Clientes.
+- Catálogo y productos.
+- Pedidos.
+- Entregas y repartidores.
+- Registro y consulta de pagos.
+- Notificaciones básicas.
+- Auditoría y seguridad.
+
+**Módulos ampliables:**
+- Inventario avanzado.
+- Promociones avanzadas.
+- Reportes y estadísticas.
+- Cartera y cuentas por cobrar.
+- Gestión avanzada de rutas.
+- Integraciones externas.
+
+El catálogo y las promociones sencillas podrán cubrir las necesidades comerciales básicas. Las reglas avanzadas de promociones se desarrollarán cuando se definan y aprueben sus condiciones. Esta clasificación no significa que todos los módulos esenciales estén ya implementados.
+
 ## 2. Identidad visual
 - Estilo digital y contemporáneo.
 - Fondos azul profundo, acentos cian y violeta, tarjetas redondeadas e iconografía clara.
@@ -124,7 +150,7 @@ El administrador dispone de una experiencia propia para crear, editar, publicar,
 - Monolito modular inicial.
 
 ## 10. Pendientes antes de producción
-- Definir módulos esenciales del primer lanzamiento y módulos opcionales.
+- Definir dependencias, reglas y alcance detallado de los módulos esenciales y ampliables.
 - Definir dependencias, compatibilidades y reglas de activación por negocio.
 - Matriz detallada de permisos del empleado.
 - Membresías múltiples y cambio de contexto.
