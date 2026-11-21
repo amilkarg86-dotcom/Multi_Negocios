@@ -27,13 +27,12 @@ erDiagram
     NEGOCIOS ||--o{ CLIENTES : registra
     NEGOCIOS ||--o{ PRODUCTOS : ofrece
     NEGOCIOS ||--o{ PEDIDOS : recibe
-    NEGOCIOS ||--o{ PAGOS : registra
-    NEGOCIOS ||--o{ ARCHIVOS : almacena
+        NEGOCIOS ||--o{ ARCHIVOS : almacena
 
     CLIENTES ||--o{ PEDIDOS : realiza
     MIEMBROS o|--o{ PEDIDOS : reparte
     MIEMBROS o|--o{ PEDIDOS : crea
-    PEDIDOS ||--|{ PEDIDO_ITEMS : contiene
+    PEDIDOS ||--o{ PEDIDO_ITEMS : contiene
     PRODUCTOS ||--o{ PEDIDO_ITEMS : aparece_en
     PEDIDOS ||--o{ PEDIDO_HISTORIAL : conserva
     CLIENTES ||--o{ PAGOS : efectua
@@ -234,7 +233,7 @@ flowchart LR
 
 **Revisión necesaria:** la consulta actual de la vista debe corregirse para agrupar y relacionar explícitamente por `negocio_id`, evitando cruces entre negocios que compartan identificadores relacionados en subconsultas.
 
-## 6. Inventario de objetos del SQL inicial
+**Precisión sobre las relaciones multiempresa:** en algunas tablas, `negocio_id` forma parte de una FK compuesta hacia otra entidad del mismo negocio, en lugar de tener una FK independiente hacia `negocios`. Por eso el diagrama dibuja las relaciones que realmente están declaradas y no agrega conectores directos solo por la presencia de la columna.\n\n## 6. Inventario de objetos del SQL inicial
 
 | Objeto | Tipo | Estado |
 |---|---|---|
