@@ -4,6 +4,10 @@
 Multi_Negocios es una plataforma móvil multiempresa para gestionar operaciones comerciales y logísticas de negocios independientes. Cada negocio opera en un espacio aislado y utiliza los módulos que correspondan a su actividad.
 
 ## 2. Principios obligatorios
+- **Enfoque modular:** el lanzamiento inicial utilizará los módulos esenciales que se aprueben; otros módulos podrán habilitarse progresivamente por negocio.
+- **Disponibilidad y permisos separados:** que un módulo esté habilitado para un negocio no concede automáticamente permisos a sus usuarios. La disponibilidad del módulo, el rol, el permiso específico y el estado del recurso deben validarse conjuntamente en el servidor.
+- **Aislamiento de configuración:** activar, pausar o configurar un módulo en un negocio no debe modificar la configuración ni los datos de otro negocio.
+- **Conservación histórica:** desactivar un módulo no debe eliminar automáticamente sus datos ni alterar pedidos u operaciones históricas.
 - **Aislamiento multiempresa:** ningún usuario consulta o modifica información de un negocio si no tiene una relación y autorización válida.
 - **Mínimo privilegio:** cada perfil recibe únicamente las funciones necesarias. Los permisos específicos pueden restringirse o ampliarse por autorización del administrador, sin superar los límites del rol.
 - **Autorización en servidor:** la API valida identidad, pertenencia al negocio, rol, permiso, propiedad del recurso y estado de la operación. Ocultar botones no es una medida de seguridad.
