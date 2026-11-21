@@ -99,7 +99,7 @@ El administrador dispone de una experiencia propia para crear, editar, publicar,
 - [Lógica funcional del sistema](docs/logica-del-sistema.md)
 - [Esquema de navegación de la app](docs/esquema-app.md)
 - [Arquitectura](docs/arquitectura.md)
-- [Base de datos](docs/base-de-datos.md)
+- [Base de datos](docs/base-de-datos.md)\n- [Modelo entidad-relación visual (MER)](docs/modelo-entidad-relacion.md)
 - [Hoja de ruta](docs/roadmap.md)
 - [Esquema SQL inicial](database/001_esquema_inicial.sql)
 
