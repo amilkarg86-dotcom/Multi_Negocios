@@ -5,7 +5,29 @@ La hoja de ruta es incremental. Cada fase debe cerrarse con pruebas y revisión 
 ## Decisión de alcance
 **Aprobado: modular.** Se comenzará con los módulos esenciales para operar y se diseñará la arquitectura para habilitar módulos adicionales según las necesidades de cada negocio. La aprobación de este enfoque no significa que todos los módulos previstos deban desarrollarse en la primera entrega.
 
-La lista exacta de módulos esenciales, los módulos opcionales y sus dependencias se definirá antes de iniciar la implementación.
+La siguiente clasificación queda aprobada como punto de partida documental:
+
+**Esenciales para el primer lanzamiento:**
+- Identidad y autenticación.
+- Registro y administración de negocios.
+- Usuarios, roles, permisos e invitaciones.
+- Clientes.
+- Catálogo y productos.
+- Pedidos.
+- Entregas y repartidores.
+- Registro y consulta de pagos.
+- Notificaciones básicas.
+- Auditoría y seguridad.
+
+**Ampliables:**
+- Inventario avanzado.
+- Promociones avanzadas.
+- Reportes y estadísticas.
+- Cartera y cuentas por cobrar.
+- Gestión avanzada de rutas.
+- Integraciones externas.
+
+La aprobación de esta clasificación no equivale a una especificación cerrada. Antes de programar deben definirse las funciones, reglas, dependencias y criterios de activación de cada módulo. El catálogo y las promociones sencillas se contemplan dentro de la operación comercial básica; las reglas promocionales avanzadas quedan para una ampliación.
 
 ## Fase 0. Definición y preparación
 - [x] Crear repositorio y README.
@@ -13,8 +35,8 @@ La lista exacta de módulos esenciales, los módulos opcionales y sus dependenci
 - [x] Aprobar enfoque modular para el alcance inicial.
 - [x] Definir los cuatro perfiles y sus límites generales.
 - [x] Documentar la lógica funcional y el esquema de navegación por perfil.
-- [ ] Definir módulos esenciales del primer lanzamiento.
-- [ ] Clasificar módulos opcionales y establecer dependencias.
+- [x] Aprobar clasificación inicial de módulos esenciales y ampliables.
+- [ ] Definir dependencias, reglas detalladas y criterios de activación.
 - [ ] Definir quién puede activar o desactivar módulos para un negocio.
 - [ ] Cerrar matriz detallada de permisos de empleado.
 - [ ] Confirmar estados y transiciones de pedidos.
