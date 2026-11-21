@@ -2,6 +2,127 @@
 
 Este documento describe la estructura de navegación y módulos por perfil. No representa pantallas implementadas ni sustituye la matriz de permisos del backend.
 
+
+## Mapa visual general de la aplicación
+
+El siguiente mapa representa las relaciones principales entre personas, negocio, módulos y servicios. Las flechas indican el recorrido o la dependencia funcional, no una autorización automática.
+
+```mermaid
+flowchart TD
+    A[Multi_Negocios] --> B[Autenticación]
+    B --> C{¿Cómo obtiene acceso?}
+    C -->|Registro público| D[Cuenta de cliente]
+    C -->|Invitación aceptada| E[Membresía de negocio]
+    C -->|Alta autorizada| F[Creación / configuración de negocio]
+    F --> G[Negocio]
+    E --> G
+    D --> H[Contexto de cliente]
+    G --> I[Contexto del negocio]
+    I --> J{Perfil y permisos}
+    J --> K[Administrador]
+    J --> L[Empleado]
+    J --> M[Repartidor]
+    H --> N[Experiencia del cliente]
+    K --> O[Panel y módulos administrativos]
+    L --> P[Herramientas operativas autorizadas]
+    M --> Q[Entregas asignadas]
+    N --> R[Negocios y catálogos publicados]
+    R --> S[Carrito y pedidos propios]
+    O --> T[Catálogo, pedidos, clientes, inventario, pagos y equipo]
+    P --> U[Registro y gestión autorizada de pedidos]
+    T --> V[API]
+    U --> V
+    Q --> V
+    S --> V
+    V --> W[Validación de identidad, negocio, rol, permiso y recurso]
+    W --> X[(Base de datos)]
+    W --> Y[Auditoría y notificaciones]
+```
+
+## Mapa de relaciones entre perfiles y negocio
+
+```mermaid
+flowchart LR
+    subgraph Plataforma[Plataforma Multi_Negocios]
+        AUTH[Cuenta autenticada]
+    end
+
+    subgraph Negocio[Espacio aislado de un negocio]
+        ADMIN[Administrador]
+        EMP[Empleado]
+        REP[Repartidor]
+        CAT[Catálogo del negocio]
+        PED[Pedidos del negocio]
+        INV[Inventario y operaciones]
+        CLIENTES[Registro comercial de clientes]
+    end
+
+    CLI[Cliente] -->|consulta oferta publicada| CAT
+    CLI -->|crea| PED
+    ADMIN -->|administra| CAT
+    ADMIN -->|administra| EMP
+    ADMIN -->|invita y asigna| REP
+    ADMIN -->|controla| PED
+    ADMIN -->|gestiona| INV
+    EMP -->|registra en nombre del cliente| PED
+    EMP -->|consulta según permisos| CAT
+    EMP -->|opera según permisos| INV
+    REP -->|solo consulta asignaciones propias| PED
+    REP -->|actualiza eventos de entrega| PED
+    PED -->|contiene| CLIENTES
+    AUTH -.-> ADMIN
+    AUTH -.-> EMP
+    AUTH -.-> REP
+    AUTH -.-> CLI
+```
+
+## Mapa de los flujos comerciales principales
+
+```mermaid
+flowchart TD
+    subgraph Administrador[Flujo del administrador]
+        A1[Administrar catálogo] --> A2[Crear o editar producto]
+        A2 --> A3[Definir precio regular]
+        A3 --> A4[Publicar producto]
+        A4 --> A5[Crear promoción opcional]
+        A5 --> A6[Definir beneficio y vigencia]
+        A6 --> A7[Catálogo visible al cliente]
+    end
+
+    subgraph Compra[Flujo de compra del cliente]
+        C1[Explorar negocios] --> C2[Consultar catálogo publicado]
+        C2 --> C3[Seleccionar productos]
+        C3 --> C4[Carrito]
+        C4 --> C5[Dirección y confirmación]
+        C5 --> C6[API valida precios y promociones]
+        C6 --> C7[Pedido registrado]
+    end
+
+    subgraph Asistido[Registro asistido por empleado]
+        E1[Empleado autorizado] --> E2[Seleccionar cliente]
+        E2 --> E3[Consultar catálogo]
+        E3 --> E4[Preparar pedido]
+        E4 --> E5[API valida permisos y precios]
+        E5 --> E6[Pedido registrado a nombre del cliente]
+    end
+
+    A7 --> C2
+    A7 --> E3
+    C7 --> P[Preparación y asignación]
+    E6 --> P
+    P --> R[Repartidor asignado]
+    R --> D[Entrega y actualización logística]
+    D --> H[Historial y notificación al cliente]
+```
+
+### Lectura de los diagramas
+- Cada negocio constituye un espacio aislado. Sus productos, precios, promociones, clientes, pedidos, miembros e inventario no se mezclan con los de otros negocios.
+- Una cuenta autenticada puede tener más de una relación, pero cada operación se evalúa dentro del contexto activo y sus permisos.
+- El catálogo administrativo es la fuente de publicación de productos y promociones; el cliente consume únicamente la oferta publicada.
+- Los pedidos creados por el cliente y los registrados por un empleado convergen en el mismo flujo. Se conserva quién es el cliente y quién creó realmente el pedido.
+- La asignación de reparto conecta un pedido con un repartidor concreto. El repartidor no obtiene acceso general al negocio.
+- La API es el punto de control obligatorio antes de leer o modificar datos.
+
 ## 1. Entrada común
 1. Inicio de sesión.
 2. Registro de cuenta de cliente.
